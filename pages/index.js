@@ -1,10 +1,19 @@
 import React from "react";
 import { MongoClient } from "mongodb";
+import Head from "next/head";
 
 import MeetupList from "../components/meetups/MeetupList";
 
 const HomePage = (props) => {
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <>
+      <Head>
+        <title>React Meetups</title>
+        <meta name="description" content="React meetups" />
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </>
+  );
 };
 
 // Fetching data for static pages. It will be called before our component this function will run during the build process.
