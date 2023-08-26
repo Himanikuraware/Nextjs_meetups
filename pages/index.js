@@ -25,12 +25,25 @@ const HomePage = (props) => {
   return <MeetupList meetups={props.meetups} />;
 };
 
-// Fetching data for static pages. It will be called before our component.
+// This function will always run after the deployment.
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// }
+
+// Fetching data for static pages. It will be called before our component this function will run during the build process.
 export async function getStaticProps() {
   return {
     props: {
       meetups: DUMMY_MEETUPS,
     },
+    // to use latest data without building it again we can use revalidate prop(Incremental Static Generation).
+    revalidate: 10, //number od seconds.
   };
 }
 
