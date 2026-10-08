@@ -31,7 +31,7 @@ export async function getStaticPaths() {
   client.close();
 
   return {
-    fallback: false,
+    fallback: 'blocking', // can also be true or false, but blocking is better for SEO
     paths: meetups.map((meetup) => ({
       params: {
         meetupId: meetup._id.toString(),
